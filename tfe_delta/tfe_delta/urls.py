@@ -21,4 +21,8 @@ from polls import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^index/$', views.index, name='index'),
+    url(r'^$', views.teoria_circuito, name='teoria'),
+    url(r'^simulacoes/$', views.simulacoes, name='simulacoes'),
+    url(r'^aplicacoes/$', views.aplicacoes, name='aplicacoes'),
+    url(r'^sobre/$', views.sobre, name='sobre'),
 ]
