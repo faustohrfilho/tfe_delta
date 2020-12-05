@@ -1,5 +1,7 @@
 from django.shortcuts import render
 import numpy as np
+from plotly.offline import plot
+from plotly.graph_objs import Scatter
 
 # Create your views here.
 
@@ -17,7 +19,49 @@ def teoria_circuito(request):
 
 def simulacoes(request):
     #rodar o codigo do plotly
-    context = {}
+    if request.method == 'GET':
+        context = {'params':[]}
+        xd = np.linspace(0,6*np.pi,1000)
+        yd = np.sin(xd)*220
+        plot_div = plot([Scatter(x=xd, y=yd,
+                    mode='lines', name='test',
+                    opacity=0.8, marker_color='green')],
+               output_type='div',
+               include_plotlyjs=False)
+        context['plot_div'] = plot_div
+    else:
+        context = {'params':[]}
+#        context['params'].append({
+#            'nome': 'Resistencia 1',
+#            'valor': request.POST.get('resistor1'),
+#            })
+#        context['params'].append({
+#            'nome': 'Resistencia 2',
+#            'valor': request.POST.get('resistor2'),
+#            })
+#        context['params'].append({
+#            'nome': 'Resistencia 3',
+#            'valor': request.POST.get('resistor3'),
+#            })
+        context['params'].append({
+            'nome': 'Tensao',
+            'valor': request.POST.get('tensao'),
+            })
+#        context['params'].append({
+#            'nome': 'Resistencia Total',
+#            'valor': float(request.POST.get('resistor1')) + float(request.POST.get('resistor2')) + float(request.POST.get('resistor3')),
+#            })
+
+        tensao = float(request.POST.get('tensao'))
+        xd = np.linspace(0,6*np.pi,1000)
+        yd = np.sin(xd)*tensao
+        plot_div = plot([Scatter(x=xd, y=yd,
+                    mode='lines', name='test',
+                    opacity=0.8, marker_color='green')],
+               output_type='div',
+               include_plotlyjs=False)
+        context['plot_div'] = plot_div
+
     return render(request,'polls/simulacoes.html',context)
 
 def aplicacoes(request):
