@@ -7,15 +7,6 @@ import plotly.graph_objects as go
 
 # Create your views here.
 
-def index(request):
-    text = 'Pagina Inicial'
-    a = np.linspace(5,15,3)
-    context = {
-        'text': text,
-        'a':a,
-    }
-    return render(request,'polls/index.html',context)
-
 def teoria_circuito(request):
     return render(request,'polls/teoria_circuito.html',{})
 
