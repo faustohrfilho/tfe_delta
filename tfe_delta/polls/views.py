@@ -83,7 +83,13 @@ def simulacoes(request):
 
         # Add figure title
         fig.update_layout(
-            title_text="Grafico do circuito trifásico ligação delta"
+            title_text="Grafico do circuito trifásico ligação delta",
+            yaxis=dict(
+                title="Tensão (V)"
+            ),
+            yaxis2=dict(
+                title="Corrente (A)"
+            )
         )
 
         # Set x-axis title
