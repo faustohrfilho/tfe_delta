@@ -2,6 +2,8 @@ from django.shortcuts import render
 import numpy as np
 from plotly.offline import plot
 from plotly.graph_objs import Scatter
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
 
 # Create your views here.
 
@@ -21,43 +23,79 @@ def simulacoes(request):
     #rodar o codigo do plotly
     if request.method == 'GET':
         context = {'params':[]}
-        xd = np.linspace(0,6*np.pi,1000)
-        yd = np.sin(xd)*220
+        xd = np.linspace(0,300,1000)
+        yd = np.sin(xd/30*np.pi)*220
+        yd2 = np.sin(xd/30*np.pi+(np.pi/2))*220
         plot_div = plot([Scatter(x=xd, y=yd,
                     mode='lines', name='test',
-                    opacity=0.8, marker_color='green')],
+                    opacity=0.8, marker_color='green'),
+                    Scatter(x=xd, y=yd2,
+                    mode='lines', name='test',
+                    opacity=0.8, marker_color='blue')],
                output_type='div',
                include_plotlyjs=False)
         context['plot_div'] = plot_div
     else:
         context = {'params':[]}
-#        context['params'].append({
-#            'nome': 'Resistencia 1',
-#            'valor': request.POST.get('resistor1'),
-#            })
-#        context['params'].append({
-#            'nome': 'Resistencia 2',
-#            'valor': request.POST.get('resistor2'),
-#            })
-#        context['params'].append({
-#            'nome': 'Resistencia 3',
-#            'valor': request.POST.get('resistor3'),
-#            })
         context['params'].append({
             'nome': 'Tensao',
             'valor': request.POST.get('tensao'),
             })
-#        context['params'].append({
-#            'nome': 'Resistencia Total',
-#            'valor': float(request.POST.get('resistor1')) + float(request.POST.get('resistor2')) + float(request.POST.get('resistor3')),
-#            })
-
         tensao = float(request.POST.get('tensao'))
-        xd = np.linspace(0,6*np.pi,1000)
-        yd = np.sin(xd)*tensao
-        plot_div = plot([Scatter(x=xd, y=yd,
-                    mode='lines', name='test',
-                    opacity=0.8, marker_color='green')],
+        resistor = float(request.POST.get('resistor'))
+        iab = tensao/resistor
+        ibc = tensao/resistor
+        ica = tensao/resistor
+
+        xd = np.linspace(0,6,1000)
+        xd_rad = np.linspace(0,6*np.pi*2,1000)
+        yd = np.sin(xd_rad)*tensao
+
+        x_iab = np.linspace(0,6,1000)
+        x_iab_rad = np.linspace(0,6*np.pi*2,1000)
+        y_iab = np.sin(x_iab_rad)*iab
+
+        x_ibc = np.linspace(0,6,1000)
+        x_ibc_rad = np.linspace(0,6*np.pi*2,1000)
+        y_ibc = np.sin(x_ibc_rad+(2*np.pi/3))*ibc
+
+        x_ica = np.linspace(0,6,1000)
+        x_ica_rad = np.linspace(0,6*np.pi*2,1000)
+        y_ica = np.sin(x_ica_rad+(4*np.pi/3))*ica
+
+        # Create figure with secondary y-axis
+        fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+        # Add traces
+        fig.add_trace(
+            go.Scatter(x=xd, y=yd, name="Tensao"),
+            secondary_y=False,
+        )
+
+        fig.add_trace(
+            go.Scatter(x=x_iab, y=y_iab, name="Iab"),
+            secondary_y=True,
+        )
+
+        fig.add_trace(
+            go.Scatter(x=x_ibc, y=y_ibc, name="Ibc"),
+            secondary_y=True,
+        )
+
+        fig.add_trace(
+            go.Scatter(x=x_ica, y=y_ica, name="Ica"),
+            secondary_y=True,
+        )
+
+        # Add figure title
+        fig.update_layout(
+            title_text="Plot grafico"
+        )
+
+        # Set x-axis title
+        fig.update_xaxes(title_text="Periodo")
+
+        plot_div = plot(fig,
                output_type='div',
                include_plotlyjs=False)
         context['plot_div'] = plot_div

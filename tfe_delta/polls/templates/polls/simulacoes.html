@@ -1,23 +1,24 @@
+{% extends 'polls/barrasuperior.html' %}
+
+
+{% block body %}
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<div class="container-fluid">
+    {% for param in params %}
+        {{param.nome}}: {{param.valor}}
+    {% endfor %}
 
-<div>
-    Aqui teremos as simulações
+
+    <form action='#' method='post'>
+        {% csrf_token %}
+        <input id='tensao' name='tensao' type='number' placeholder='Tensao inicial'>
+        <input id='resistor' name='resistor' type='number' placeholder='resistores'>
+        <button type='submit'>Enviar</button>
+    </form>
 </div>
-
 {% autoescape off %}
 {{ plot_div }}
 {% endautoescape %}
 
-{% for param in params %}
-    {{param.nome}}: {{param.valor}}
-{% endfor %}
 
-
-<form action='#' method='post'>
-    {% csrf_token %}
-    <!-- <input id='resistor1' name='resistor1' type='number' placeholder='resistor 1'>
-    <input id='resistor2' name='resistor2' type='number' placeholder='resistor 2'>
-    <input id='resistor3' name='resistor3' type='number' placeholder='resistor 3'> -->
-    <input id='tensao' name='tensao' type='number' placeholder='Tensao'>
-    <button type='submit'>Enviar</button>
-</form>
+{% endblock %}

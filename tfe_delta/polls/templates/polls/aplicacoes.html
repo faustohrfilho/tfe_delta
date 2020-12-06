@@ -1,7 +1,27 @@
-<div>
-    Aqui teremos o videozinho
-</div>
+{% extends 'polls/barrasuperior.html' %}
+{% load static %}
 
-<div>
-    <iframe width="600" height="500" src="https://www.youtube.com/embed/O9pzmIRWE1w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+{% block body %}
+<div class="container-fluid">
+    <div class="col-sm-12 col-xl-12 col-lg-12 col-md-12 text-center" style="font-size:50px;margin-top:30px;margin-bottom:40px;">
+        APLICAÇÕES
+    </div>
+    <div class="row">
+        <div class="texto-teoria col-sm-7 col-xl-7 col-lg-7 col-md-7">
+            <span style="width: 100%;">Tratando-se de maquinas elétricas rotativas, os motores trifásicos possuem internamente em seu estator 3 grupos de bobinas, cada uma associada com uma fase de alimentação. As bobinas do estator estão defasadas em 120°, fazendo com que estas produzam como resultado um campo magnético girante. A interação do campo girante com o rotor de imã permanente ou de polos, provoca uma indução magnética que forçará o rotor a acompanhar o campo magnético girante.
+                <br>
+                São mais comumente encontrados nos parques industriais e proporcionam ligações com alta variedade de tensão de entrada. As ligações das bobinas podem ser realizadas em estrela ou triângulo.</span>
+        </div>
+        <div class="col-sm-4 col-xl-4 col-lg-4 col-md-4 text-center">
+            <figure>
+                <img src="{% static 'polls/motortrifasico.jpeg' %}" style="width: 460px;height: 100%;">
+                <figcaption>Motor trifásico com opção de ligação em delta ou estrela</figcaption>
+            </figure>
+        </div>
+    </div>
+    <div class="col-sm-12 col-xl-12 col-lg-12 col-md-12 text-center" style="margin:40px 0;">
+        <iframe width="640" height="360" src="https://www.youtube.com/embed/hsLzZypUswA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
 </div>
+{% endblock %}

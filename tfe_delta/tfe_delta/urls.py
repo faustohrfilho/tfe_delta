@@ -17,6 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
 from polls import views
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,3 +30,5 @@ urlpatterns = [
     url(r'^aplicacoes/$', views.aplicacoes, name='aplicacoes'),
     url(r'^sobre/$', views.sobre, name='sobre'),
 ]
+
+urlpatterns += staticfiles_urlpatterns()

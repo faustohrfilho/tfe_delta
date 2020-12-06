@@ -1,6 +1,29 @@
-<div>
-    {% for integrante in lista_integrantes %}
-    Nome: {{integrante.nome}}, Matricula: {{integrante.matricula}}
-    <br>
-    {% endfor %}
+{% extends 'polls/barrasuperior.html' %}
+
+
+{% block body %}
+<div class="container-fluid">
+    <div class="col-sm-12 col-xl-12 col-lg-12 col-md-12 text-center" style="font-size:50px;margin-top:30px;margin-bottom:40px;">
+        SOBRE
+    </div>
+    <div class="row">
+        <div class="texto-teoria col-sm-8 col-xl-8 col-lg-8 col-md-8" style="margin-top:20px;">
+            <b>Alunos:</b>
+        </div>
+        <div class="texto-teoria col-sm-8 col-xl-8 col-lg-8 col-md-8" style="margin-top:20px;">
+            {% for integrante in lista_integrantes %}
+            Nome: {{integrante.nome}}, Matricula: {{integrante.matricula}}
+            <br>
+            {% endfor %}
+        </div>
+        <div class="texto-teoria col-sm-8 col-xl-8 col-lg-8 col-md-8" style="margin-top:20px;">
+            Professor: Wellington Maycon Santos Bernardes
+            <br>
+            Tema: Circuitos trifásicos equilibrados - Configuração delta
+            <br>
+            Disciplina Experimental de Circuítos Elétricos 2 - Turma E3
+        </div>
+    </div>
+
 </div>
+{% endblock %}

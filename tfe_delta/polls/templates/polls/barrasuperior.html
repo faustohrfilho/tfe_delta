@@ -1,0 +1,73 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html id="pagina" lang="en" style="height: 100%; width: 100%;">
+    <head>
+        <style>
+            .navbar{
+                height: 130px;
+                background-color: #036ad3 !important;
+            }
+
+            .menu_items{
+                margin-right: 30px !important;
+                margin-top: 45px !important;
+                font-size: 24px;
+                color: white;
+            }
+
+            img{
+                height: 100px;
+                margin-top: 10px;
+            }
+
+            .texto-teoria{
+                font-size: 24px;
+                display: flex;
+                align-items: center;
+                justify-content: left;
+                margin-left:50px;
+                text-align: justify;
+            }
+        </style>
+    </head>
+    <body style="height: 100%;">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+
+    <header>
+        <nav class="navbar navbar-inverse" style="border:none;border-radius:0px;">
+            <a href="/">
+                <img class="logocantosuperior" src="{% static 'polls/logo2.png' %}">
+            </a>
+            <ul class="ul-barra-s nav navbar-nav navbar-right menu_items">
+                <li class="li_teoria">
+                    <div class="btn_teoria"></div>
+                    <a style="padding-top: 10px;padding-bottom: 10px;cursor: pointer;" href="/">
+                        <span aria-hidden="true"></span>&nbsp;Teoria
+                    </a>
+                </li>
+                <li class="li_simulacoes">
+                    <div class="btn_teoria"></div>
+                    <a style="padding-top: 10px;padding-bottom: 10px;cursor: pointer;" href="/simulacoes">
+                        <span aria-hidden="true"></span>&nbsp;Simulações
+                    </a>
+                </li>
+                <li class="li_teoria">
+                    <div class="btn_teoria"></div>
+                    <a style="padding-top: 10px;padding-bottom: 10px;cursor: pointer;" href="/aplicacoes">
+                        <span aria-hidden="true"></span>&nbsp;Aplicações
+                    </a>
+                </li>
+                <li class="li_teoria">
+                    <div class="btn_teoria"></div>
+                    <a style="padding-top: 10px;padding-bottom: 10px;cursor: pointer;" href="/sobre">
+                        <span aria-hidden="true"></span>&nbsp;Sobre
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    {% block body %}
+    {% endblock %}
+    </body>
+</html>

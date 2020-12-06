@@ -1,3 +1,115 @@
-<div>
-    Aqui teremos a descriçao da teoria do circuito;
+{% extends 'polls/barrasuperior.html' %}
+{% load static %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="col-sm-12 col-xl-12 col-lg-12 col-md-12 text-center" style="font-size:50px;margin:30px 0">
+        INTRODUÇÃO
+    </div>
+    <div class="row">
+        <div class="texto-teoria col-sm-7 col-xl-7 col-lg-7 col-md-7">
+            <span style="width: 100%;">Um sistema trifásico com carga equilibrada delta-delta ou triângulo-triângulo é constituída por três impedâncias iguais e fonte igualmente equilibrada. Logo, tanto a fonte, como também a carga, devem estar conectadas como na figura a seguir.</span>
+        </div>
+        <div class="col-sm-4 col-xl-4 col-lg-4 col-md-4 text-center">
+            <figure>
+                <img src="{% static 'polls/FIGURA1CIRCUITO.png' %}" style="width: 250px;height: 100%;">
+                <figcaption>Figura 1 - Simbolo do circuito delta</figcaption>
+            </figure>
+        </div>
+    </div>
+    <div class="col-sm-7 col-xl-7 col-lg-7 col-md-7 text-center">
+        <figure>
+            <img src="{% static 'polls/figuracircuito.png' %}" style="width:560px;height: 100%;">
+            <figcaption>Figura 2 - Circuito trifasico equilibrado delta</figcaption>
+        </figure>
+    </div>
+    <div class="row">
+        <div class="texto-teoria col-sm-8 col-xl-8 col-lg-8 col-md-8" style="margin-top:20px;">
+            Supondo uma sequência positiva as tensões de fase para uma fonte conectada em triângulo são:
+            <br>
+            VAB=V∠ 0°
+            <br>
+            VBC=V∠ −120°
+            <br>
+            VCA=V∠ 120°
+            <br>
+            As tensões de linha são as mesmas que as tensões de fase, ou seja:
+            <br>
+            VAB=VA’B’, VBC=VB’C’, VCA=VC’A’
+            <br>
+            Dessa forma, as correntes de fase são:
+            <br>
+            
+        </div>
+        <div class="texto-teoria col-sm-8 col-xl-8 col-lg-8 col-md-8">
+            <img src="{% static 'polls/formula1.jpeg' %}" style="height: 100%;">
+        </div>
+        <div class="texto-teoria col-sm-8 col-xl-8 col-lg-8 col-md-8" style="margin-top:20px;">
+            Aplicando-se a Lei de Kirchhoff aos nós A’, B’, C’ obteremos:
+            <br>
+            IA=IA’B’-IC’A’
+            <br>
+            IB=IB’C’-IA’B’
+            <br>
+            IC=IC’A’-IB’C’
+            <br>
+            Cada corrente de linha está atrasada em relação a corrente de fase em 30°. A magnitude da corrente de linha é √3 vezes a magnitude da corrente de fase.
+            <br>
+        </div>
+    </div>
+    <div class="col-sm-12 col-xl-12 col-lg-12 col-md-12 text-center" style="font-size:50px;margin:30px 0">
+        MONTAGEM
+    </div>
+    <div class="row">
+        <div class="texto-teoria col-sm-12 col-xl-12 col-lg-12 col-md-12">
+            Os materiais necessários para a realização da montagem do experimento são:
+            <br>
+            <br>
+            • Cabos de conexão;
+            <br>    
+            • 01 regulador de tensão (varivolt);
+            <br>
+            • 03 resistores de 50 Ω;
+            <br>
+            • 03 reatores de 160mH e com R=3,8 Ω;
+            <br>
+            • 01 amperímetro AC analógico.
+            <br>
+            • 01 Medidor Trifásico de diversas grandezas;
+            <br>
+            • 01 Medidor Trifásico Kron Mult-K.
+        </div>
+    </div>
+    <div class="row" style="margin: 40px 0;">
+        <div class="col-sm-3 col-xl-3 col-lg-3 col-md-3 text-center">
+            <figure>
+                <img src="{% static 'polls/FIGURA2varivolt.png' %}" style="width: 90%;height: 300px;">
+                <figcaption>Figura 3 - Varivolt</figcaption>
+            </figure>
+        </div>
+        <div class="col-sm-3 col-xl-3 col-lg-3 col-md-3 text-center">
+            <figure>
+                <img src="{% static 'polls/FIGURA3amperimetro.png' %}"  style="width: 90%;height: 300px;">
+                <figcaption>Figura 4 - Amperimetro</figcaption>
+            </figure>
+        </div>
+        <div class="col-sm-3 col-xl-3 col-lg-3 col-md-3 text-center">
+            <figure>
+                <img src="{% static 'polls/figura4medidor.png' %}"  style="width: 90%;height: 300px;">
+                <figcaption>Figura 5 - Medidor trifasico de diversas grandezas</figcaption>
+            </figure>
+        </div>
+        <div class="col-sm-3 col-xl-3 col-lg-3 col-md-3 text-center">
+            <figure>
+                <img src="{% static 'polls/figura5multk.png' %}"  style="width: 90%;height: 300px;">
+                <figcaption>Figura 6 - Medidor trifasico mult-k</figcaption>
+            </figure>
+        </div>
+    </div>
+    <div class="row">
+        <div class="texto-teoria col-sm-12 col-xl-12 col-lg-12 col-md-12">
+            
+        </div>
+    </div>
 </div>
+{% endblock %}
