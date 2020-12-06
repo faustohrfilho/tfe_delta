@@ -23,23 +23,17 @@ def simulacoes(request):
     #rodar o codigo do plotly
     if request.method == 'GET':
         context = {'params':[]}
-        xd = np.linspace(0,300,1000)
-        yd = np.sin(xd/30*np.pi)*220
-        yd2 = np.sin(xd/30*np.pi+(np.pi/2))*220
-        plot_div = plot([Scatter(x=xd, y=yd,
-                    mode='lines', name='test',
-                    opacity=0.8, marker_color='green'),
-                    Scatter(x=xd, y=yd2,
-                    mode='lines', name='test',
-                    opacity=0.8, marker_color='blue')],
-               output_type='div',
-               include_plotlyjs=False)
+        plot_div = '<div></div>'
         context['plot_div'] = plot_div
     else:
         context = {'params':[]}
         context['params'].append({
             'nome': 'Tensao',
-            'valor': request.POST.get('tensao'),
+            'valor': request.POST.get('tensao') + ' (V)',
+            })
+        context['params'].append({
+            'nome': 'Resistores',
+            'valor': request.POST.get('resistor') + ' (ohms)',
             })
         tensao = float(request.POST.get('tensao'))
         resistor = float(request.POST.get('resistor'))
@@ -89,7 +83,7 @@ def simulacoes(request):
 
         # Add figure title
         fig.update_layout(
-            title_text="Plot grafico"
+            title_text="Grafico do circuito trifásico ligação delta"
         )
 
         # Set x-axis title
